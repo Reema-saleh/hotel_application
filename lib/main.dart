@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_booking/db_services/services.dart';
+import 'package:hotel_application/db_services/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
