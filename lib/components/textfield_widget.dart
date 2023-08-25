@@ -29,10 +29,8 @@ class TextfieldWidget extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
-              color: AppColors.primary,
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              color: Colors.black54, fontSize: 14, fontWeight: FontWeight.bold),
           textAlign: TextAlign.start,
         ),
         kHSpace8,

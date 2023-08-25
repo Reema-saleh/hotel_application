@@ -10,6 +10,8 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter:
     sdk: flutter
+  gradient_coloured_buttons: ^0.1.0
+  icons_plus: ^4.0.0
   supabase: ^1.11.1
   supabase_flutter: ^1.10.14
 
@@ -20,3 +22,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+
