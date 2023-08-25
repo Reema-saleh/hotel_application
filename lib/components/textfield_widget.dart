@@ -12,6 +12,8 @@ class TextfieldWidget extends StatelessWidget {
     this.width = 300,
     this.height = 60,
     this.controller,
+    this.obscureText = false,
+    this.radius,
   });
 
   final String label;
@@ -21,6 +23,8 @@ class TextfieldWidget extends StatelessWidget {
   final Icon? preIcon;
   final Icon? suffiIcon;
   final TextEditingController? controller;
+  final bool obscureText;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +42,18 @@ class TextfieldWidget extends StatelessWidget {
           height: height,
           width: width,
           child: TextField(
+            clipBehavior: Clip.hardEdge,
+            obscureText: obscureText,
             controller: controller,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 prefixIcon: preIcon,
                 suffixIcon: suffiIcon,
                 hintText: hintText,
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(15))),
+                    borderRadius: BorderRadius.circular(radius ?? 15))),
           ),
         ),
       ],
