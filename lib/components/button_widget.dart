@@ -8,7 +8,8 @@ class ButtonWidget extends StatelessWidget {
     this.textColor = Colors.white,
     required this.buttonColor,
     this.width = 300,
-    this.height = 50,
+    this.height = 40,
+    this.icon,
   });
 
   final String text;
@@ -17,19 +18,31 @@ class ButtonWidget extends StatelessWidget {
   final Color buttonColor;
   final double width;
   final double height;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: buttonAction,
       style: ElevatedButton.styleFrom(
-        textStyle: const TextStyle(fontSize: 20),
+        textStyle: const TextStyle(fontSize: 16),
         backgroundColor: buttonColor,
         foregroundColor: textColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+            side: const BorderSide(color: Colors.black)),
         fixedSize: Size(width, height),
       ),
-      child: Text(text),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(
+            icon,
+            size: 20,
+          ),
+          Text(text)
+        ],
+      ),
     );
   }
 }
