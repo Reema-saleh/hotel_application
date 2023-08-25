@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:hotel_application/db_services/services.dart';
+import 'package:hotel_application/db_services/quaries.dart';
 import 'package:hotel_application/screens/all_hotels_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,17 +14,16 @@ void main() async {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HotelsScreen()
-      // Scaffold(
-      //     body: FutureBuilder(
-      //         future: getData(),
-      //         builder: (context, snapshot) {
-      //           return Center(child: Text(snapshot.data.toString()));
-      //         })),
+    return MaterialApp(
+      home: Scaffold(
+          body: FutureBuilder(
+              future: SupabaseViewServices().getHotelsInfo(),
+              builder: (context, snapshot) {
+                final list = snapshot.data;
+                return HotelsScreen(hotelList: list ?? []);
+              })),
     );
   }
 }

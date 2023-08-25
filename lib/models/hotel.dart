@@ -26,7 +26,11 @@ class HotelModel {
     roomPrice = json['room_price'];
     numRooms = json['num_rooms'];
     hotelImage = json['hotel_image'];
-    facilities = json['facilities'].cast<String>();
+    if (json['facilities'] == null) {
+      facilities = [];
+    } else {
+      facilities = json['facilities'].cast<String>();
+    }
   }
 
   Map<String, dynamic> toJson() {
