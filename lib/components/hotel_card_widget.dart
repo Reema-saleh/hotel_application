@@ -26,7 +26,7 @@ class HotelCard extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: path,
             height: context.getHeight / 4,
-            width: context.getWidth / 3,
+            width: context.getWidth / 2.5,
             fit: BoxFit.cover,
             errorWidget: (context, url, error) => SizedBox(
               height: context.getHeight / 4,

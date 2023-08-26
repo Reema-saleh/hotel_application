@@ -21,7 +21,7 @@ class TextfieldWidget extends StatelessWidget {
   final double height;
   final String? hintText;
   final Icon? preIcon;
-  final Icon? suffiIcon;
+  final Widget? suffiIcon;
   final TextEditingController? controller;
   final bool obscureText;
   final double? radius;
@@ -45,12 +45,16 @@ class TextfieldWidget extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             obscureText: obscureText,
             controller: controller,
+            textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
                 prefixIcon: preIcon,
                 suffixIcon: suffiIcon,
                 hintText: hintText,
+                hintStyle: const TextStyle(
+                  fontSize: 13,
+                ),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primary),
                     borderRadius: BorderRadius.circular(radius ?? 15))),

@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   gradient_coloured_buttons: ^0.1.0
   icons_plus: ^4.0.0
+  loading_animation_widget: ^1.2.0+4
+  shimmer: ^3.0.0
   supabase: ^1.11.1
   supabase_flutter: ^1.10.14
 
