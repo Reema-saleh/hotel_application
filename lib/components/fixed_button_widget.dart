@@ -1,32 +1,44 @@
-
 import 'package:flutter/material.dart';
-import 'package:gradient_coloured_buttons/gradient_coloured_buttons.dart';
-import 'package:hotel_application/screens/hotel_info_screen.dart';
+import 'package:hotel_application/components/gradient_button_widget.dart';
+import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/models/hotel.dart';
 
 class FixedButton extends StatelessWidget {
   const FixedButton({
     super.key,
-    required this.widget,
+    required this.hotelObject,
   });
 
-  final HotelInfo widget;
+  final HotelModel hotelObject;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      color: Colors.grey.shade300,
+      width: context.getWidth,
+      height: 60,
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Start From'),
-            Text('\$${widget.hotelObject.roomPrice}/night')
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Start From'),
+                Text('\$${hotelObject.roomPrice}/night')
+              ],
+            ),
+            const Spacer(),
+            GradientButtonWidget(
+              text: 'Book Now',
+              onPressed: () {},
+              width: 200,
+            )
           ],
         ),
-        GradientButton(text: 'Book Room', onPressed: () {})
-      ],
+      ),
     );
   }
 }

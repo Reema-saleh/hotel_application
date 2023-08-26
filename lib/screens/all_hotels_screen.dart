@@ -3,7 +3,7 @@ import 'package:hotel_application/components/appbar_widget.dart';
 import 'package:hotel_application/components/hotel_card_widget.dart';
 import 'package:hotel_application/extension/nav.dart';
 import 'package:hotel_application/models/hotel.dart';
-import 'package:hotel_application/screens/hotel_info_screen.dart';
+import 'package:hotel_application/screens/hotel_screen.dart';
 
 class HotelsScreen extends StatelessWidget {
   const HotelsScreen({super.key, required this.hotelList});
@@ -24,7 +24,7 @@ class HotelsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              HotelInfo(hotelObject: hotelList[index]).push(context);
+              AllHotels(hotelObject: hotelList[index]).push(context);
             },
             child: HotelCard(
                 path: hotelList[index].hotelImage ??

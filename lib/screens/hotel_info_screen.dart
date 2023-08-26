@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_coloured_buttons/gradient_coloured_buttons.dart';
 import 'package:hotel_application/components/bold_text.dart';
 import 'package:hotel_application/components/image_widget.dart';
 import 'package:hotel_application/extension/screen_size.dart';
