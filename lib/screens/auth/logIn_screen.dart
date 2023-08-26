@@ -69,6 +69,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                       kHSpace16,
                       TextfieldWidget(
+                        obscureText: true,
                         controller: passwordController,
                         preIcon: const Icon(Icons.lock_outline),
                         label: 'Password',
