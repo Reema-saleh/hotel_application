@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_application/db_services/services.dart';
+import 'package:hotel_application/app.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -16,13 +16,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          body: FutureBuilder(
-              future: getData(),
-              builder: (context, snapshot) {
-                return Center(child: Text(snapshot.data.toString()));
-              })),
-    );
+    return const MaterialApp(home: App());
   }
 }
