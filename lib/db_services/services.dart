@@ -6,9 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SupabaseClass {
   static final supabase = Supabase.instance.client;
 
-  Future<HotelUser> getUserName({required userEmail}) async {
+  Future<HotelUser> getUserName({required userId}) async {
     final rawData =
-        await supabase.from('user').select('name').eq('email', userEmail);
+        await supabase.from('user').select('name').eq('user_id', userId);
 
     final List<HotelUser> users = [];
     for (final user in rawData) {

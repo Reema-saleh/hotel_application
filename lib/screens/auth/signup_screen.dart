@@ -119,9 +119,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   email: email,
                                   password: password,
                                 );
+
                                 await SupabaseClass.supabase
                                     .from('user')
-                                    .insert({"name": name, "email": email});
+                                    .insert({
+                                  "user_id": SupabaseClass
+                                      .supabase.auth.currentUser!.id,
+                                  "name": name,
+                                  "email": email
+                                });
 
                                 if (context.mounted) {
                                   const Home().push(context);
@@ -141,6 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   .show(context);
                             }
                           } catch (e) {
+                            print(e);
                             ElegantNotification.error(
                                     title: const Text("Signup failed"),
                                     description: const Text("Please try again"))
