@@ -7,6 +7,7 @@ class Profile extends StatelessWidget {
   Profile({
     super.key,
   });
+  final currentUserId = SupabaseClass.supabase.auth.currentSession?.user.id;
   final currentUserEmail =
       SupabaseClass.supabase.auth.currentSession?.user.email;
 
@@ -25,7 +26,7 @@ class Profile extends StatelessWidget {
                       colors: [AppColors.primary, AppColors.secondry])),
             ),
             FutureBuilder(
-              future: SupabaseClass().getUserName(userEmail: currentUserEmail),
+              future: SupabaseClass().getUserName(userId: currentUserId),
               builder: (context, snapshot) {
                 return Column(
                   children: [

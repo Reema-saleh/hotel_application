@@ -9,8 +9,8 @@ import 'package:hotel_application/extension/screen_size.dart';
 import 'package:hotel_application/screens/hotels_based_on_search_screen.dart';
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key, required this.currentUserEmail});
-  final String currentUserEmail;
+  const SearchBarWidget({super.key, required this.currentUserId});
+  final String currentUserId;
 
   @override
   State<SearchBarWidget> createState() => _SearchBarWidgetState();
@@ -43,8 +43,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 FutureBuilder(
-                  future: SupabaseClass()
-                      .getUserName(userEmail: widget.currentUserEmail),
+                  future:
+                      SupabaseClass().getUserName(userId: widget.currentUserId),
                   builder: (context, snapshot) {
                     return Expanded(
                         child: Text(

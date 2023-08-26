@@ -17,14 +17,13 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUserEmail =
-        SupabaseClass.supabase.auth.currentSession?.user.email;
+    final currentUserId = SupabaseClass.supabase.auth.currentSession?.user.id;
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
           SearchBarWidget(
-            currentUserEmail: currentUserEmail ?? '',
+            currentUserId: currentUserId ?? '',
           ),
           kHSpace8,
           Column(
