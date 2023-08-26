@@ -26,7 +26,9 @@ class MainApp extends StatelessWidget {
               builder: (context, snapshot) {
                 final list = snapshot.data;
                 return HotelsScreen(hotelList: list ?? []);
-              })),
+              },
+              ),
+              ),
     );
   }
 }

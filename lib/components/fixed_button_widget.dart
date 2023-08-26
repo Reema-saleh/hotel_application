@@ -26,8 +26,14 @@ class FixedButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Start From'),
-                Text('\$${hotelObject.roomPrice}/night')
+                const Text(
+                  'Start From',
+                  style: TextStyle(fontSize: 15),
+                ),
+                Text(
+                  '\$${hotelObject.roomPrice}/night',
+                  style: const TextStyle(fontSize: 15),
+                )
               ],
             ),
             const Spacer(),

@@ -1,4 +1,5 @@
-import 'package:elegant_notification/elegant_notification.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hotel_application/components/appbar_widget.dart';
 import 'package:hotel_application/components/gradient_button_widget.dart';
@@ -9,20 +10,21 @@ import 'package:hotel_application/extension/screen_size.dart';
 import 'package:hotel_application/helpers.dart';
 import 'package:hotel_application/models/hotel.dart';
 import 'package:hotel_application/models/reservation.dart';
-import 'package:scroll_date_picker/scroll_date_picker.dart';
 import 'package:hotel_application/db_services/quaries.dart';
 
-class ReservationScreen extends StatefulWidget {
-  const ReservationScreen({super.key, required this.hotelObject});
+class UpdateScreen extends StatefulWidget {
+  UpdateScreen(
+      {super.key, required this.hotelObject, required this.reserveObject});
   final HotelModel hotelObject;
+  Reservation reserveObject;
+
   @override
-  State<ReservationScreen> createState() => _ReservationScreenState();
+  State<UpdateScreen> createState() => _UpdateScreenState();
 }
 
-class _ReservationScreenState extends State<ReservationScreen> {
-  DateTime selectedDate = DateTime.now();
+class _UpdateScreenState extends State<UpdateScreen> {
+  TextEditingController dateController = TextEditingController();
   TextEditingController nightsController = TextEditingController();
-  TextEditingController codeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,18 +48,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           ),
                         ),
                         kHSpace16,
-                        SizedBox(
-                          height: 250,
-                          child: ScrollDatePicker(
-                            selectedDate: selectedDate,
-                            locale: const Locale('en'),
-                            onDateTimeChanged: (DateTime value) {
-                              setState(() {
-                                selectedDate = value;
-                              });
-                            },
-                          ),
-                        ),
+                        //date
                       ],
                     ),
                     kWSpace24,
@@ -70,15 +61,18 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     ),
                   ],
                 ),
-                const Divider(
-                  endIndent: 20,
-                  color: Colors.grey,
-                  thickness: 1,
+                TextfieldWidget(
+                  label: 'Date:',
+                  hintText: '${widget.reserveObject.date}',
+                  controller: dateController,
+                  textFun: (value) {
+                    setState(() {});
+                  },
                 ),
                 kHSpace16,
                 TextfieldWidget(
-                  label: 'Nights',
-                  hintText: 'Enter number of nights',
+                  label: 'Nights:',
+                  hintText: '${widget.reserveObject.nightsBooked}',
                   controller: nightsController,
                   textFun: (value) {
                     setState(() {});
@@ -95,14 +89,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   ],
                 ),
                 kHSpace16,
-                TextfieldWidget(
-                  label: 'add coupon:',
-                  controller: codeController,
-                  textFun: (value) {
-                    setState(() {});
-                  },
-                ),
-                kHSpace16,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -110,33 +96,37 @@ class _ReservationScreenState extends State<ReservationScreen> {
                       'Total Price: ',
                     ),
                     Text(getTotalPrice(
-                            price: widget.hotelObject.roomPrice ?? 0.0,
-                            nights: int.tryParse(nightsController.text) ?? 1,
-                            coupon: codeController.text)
-                        .toString())
+                      price: widget.hotelObject.roomPrice ?? 0.0,
+                      nights: int.tryParse(nightsController.text) ?? 1,
+                    ).toString())
                   ],
+                ),
+                const Divider(
+                  endIndent: 20,
+                  color: Colors.grey,
+                  thickness: 1,
                 ),
                 kHSpace16,
                 GradientButtonWidget(
-                    text: 'Book Now',
+                    text: 'Update',
                     onPressed: () async {
                       if (nightsController.text.isNotEmpty) {
-                        final Reservation object = Reservation(
-                          date: selectedDate.toString(),
+                        widget.reserveObject = Reservation(
+                          date: dateController.text,
                           nightsBooked: int.tryParse(nightsController.text),
-                          price: getTotalPrice(
-                              price: widget.hotelObject.roomPrice ?? 0,
-                              nights: int.tryParse(nightsController.text)),
+                          price: widget.hotelObject.roomPrice,
                         );
-                        SupabaseViewServices().insertReservation(object);
+                        SupabaseViewServices()
+                            .updateReservation(widget.reserveObject);
                         Navigator.pop(context);
-                      } else {
-                        ElegantNotification.info(
-                                title: const Text("Info"),
-                                description: const Text(
-                                    "Please don't leave the field empty"))
-                            .show(context);
                       }
+                    }),
+                kHSpace16,
+                GradientButtonWidget(
+                    text: 'Cancel',
+                    onPressed: () {
+                      SupabaseViewServices().deleteReservation(
+                          widget.reserveObject.reservationId!);
                     })
               ],
             ),

@@ -26,13 +26,18 @@ class MyBookingScreen extends StatelessWidget {
             crossAxisSpacing: 8),
         itemCount: reserveList.length,
         itemBuilder: (context, index) {
-          return HotelCard(
-              path: hotelWReserve[index].hotelImage ??
-                  'https://www.hotel.de/de/media/image/fb/62/a7/Fairmont_Jakarta-Jakarta-Hotel_outdoor_area-1-685582_600x600.jpg',
-              title: hotelWReserve[index].hotelName ?? 'Fairnot hotel',
-              subtitle1:
-                  '${reserveList[index].nightsBooked}/Nights booked at date ${reserveList[index].date}',
-              price: reserveList[index].price ?? 150);
+          return InkWell(
+            onTap: () {
+              
+            },
+            child: HotelCard(
+                path: hotelWReserve[index].hotelImage ??
+                    'https://www.hotel.de/de/media/image/fb/62/a7/Fairmont_Jakarta-Jakarta-Hotel_outdoor_area-1-685582_600x600.jpg',
+                title: hotelWReserve[index].hotelName ?? 'Fairnot hotel',
+                subtitle1:
+                    '${reserveList[index].nightsBooked}/Nights booked at date ${reserveList[index].date}',
+                price: reserveList[index].price ?? 150),
+          );
         },
       ),
     );

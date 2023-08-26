@@ -58,11 +58,24 @@ class SupabaseViewServices {
 
     return hotels;
   }
-  
-  Future insertReservation(Reservation reservation) async {
+
+  Future updateReservation(Reservation reservation) async {
     final supabase = Supabase.instance.client;
-     await supabase.from('reservation').insert(reservation.toJson());
+    await supabase.from('reservation').update({
+      'nights_booked': reservation.nightsBooked,
+      'date': reservation.date,
+      'price': reservation.price
+    }).eq(reservation.reservationId ?? '', 'reservation_id');
   }
 
+  Future insertReservation(Reservation reservation) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('reservation').insert(reservation.toJson());
+  }
+
+   Future deleteReservation(String reservationId) async {
+    final supabase = Supabase.instance.client;
+     await supabase.from('reservation').delete().eq('reservation_id', reservationId);
+  }
 
 }
