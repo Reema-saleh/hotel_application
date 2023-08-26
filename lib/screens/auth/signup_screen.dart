@@ -1,3 +1,4 @@
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_application/components/gradient_button_widget.dart';
 import 'package:hotel_application/components/textfield_widget.dart';
@@ -144,15 +145,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               setState(() {});
                             }
                           } catch (e) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text('Signup failed'),
-                              backgroundColor: Colors.red,
-                            ));
-                            debugPrint('$e');
-                            setState(() {
-                              _loading = false;
-                            });
+                            ElegantNotification.error(
+                                    title: const Text("Signup failed"),
+                                    description: const Text("Please try again"))
+                                .show(context);
                           }
                         },
                         text: 'Sign Up',

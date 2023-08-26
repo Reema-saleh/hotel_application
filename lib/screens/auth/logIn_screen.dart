@@ -1,3 +1,4 @@
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_application/app.dart';
 import 'package:hotel_application/components/button_widget.dart';
@@ -100,15 +101,10 @@ class _LogInScreenState extends State<LogInScreen> {
                               }
                             }
                           } catch (e) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text('Login failed'),
-                              backgroundColor: Colors.red,
-                            ));
-                            debugPrint('$e');
-                            setState(() {
-                              _loading = false;
-                            });
+                            ElegantNotification.error(
+                                    title: const Text("Login failed"),
+                                    description: const Text("Please try again"))
+                                .show(context);
                           }
                         },
                         text: 'Login',

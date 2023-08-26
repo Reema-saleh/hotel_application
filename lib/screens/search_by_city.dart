@@ -1,7 +1,7 @@
+import 'package:elegant_notification/elegant_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_application/components/gradient_button_widget.dart';
 import 'package:hotel_application/components/textfield_widget.dart';
-import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/constants/spaces.dart';
 import 'package:hotel_application/db_services/services.dart';
 import 'package:hotel_application/extension/nav.dart';
@@ -55,11 +55,11 @@ class _SearchByCityState extends State<SearchByCity> {
             }
             if (_notFound) {
               if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(
-                      'Sorry the ${searchController.text} is not available, but no worries you can found a lot in our app'),
-                  backgroundColor: AppColors.primary,
-                ));
+                ElegantNotification.error(
+                        title: const Text("Sorry"),
+                        description: Text(
+                            "${searchController.text} is not available, but no worries you can found a lot in our app"))
+                    .show(context);
               }
             }
           },
