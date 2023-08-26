@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/db_services/quaries.dart';
+import 'package:hotel_application/models/hotel.dart';
 import 'package:hotel_application/screens/all_hotels_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+HotelModel hotelObject = HotelModel(hotelName: 'no hotel found');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
