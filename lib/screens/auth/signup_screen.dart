@@ -127,22 +127,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   const Home().push(context);
                                 }
                               } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text(
-                                      'Please make sure you entered right password confirm'),
-                                  backgroundColor: Colors.red,
-                                ));
-                                setState(() {});
+                                ElegantNotification.error(
+                                        title: const Text("Signup failed"),
+                                        description: const Text(
+                                            "Please make sure you entered right password confirm"))
+                                    .show(context);
                               }
                             } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text(
-                                    'Please make sure you filled all the fields'),
-                                backgroundColor: Colors.red,
-                              ));
-                              setState(() {});
+                              ElegantNotification.error(
+                                      title: const Text("Signup failed"),
+                                      description: const Text(
+                                          "Please make sure you filled all the fields"))
+                                  .show(context);
                             }
                           } catch (e) {
                             ElegantNotification.error(
