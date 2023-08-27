@@ -4,7 +4,7 @@ import 'package:hotel_application/components/gradient_button_widget.dart';
 import 'package:hotel_application/components/textfield_widget.dart';
 import 'package:hotel_application/constants/spaces.dart';
 import 'package:hotel_application/db_services/services.dart';
-import 'package:hotel_application/extension/nav.dart';
+import 'package:hotel_application/utilitis/extension/nav.dart';
 import 'package:hotel_application/screens/hotels_based_on_search_screen.dart';
 
 class SearchByCity extends StatefulWidget {
