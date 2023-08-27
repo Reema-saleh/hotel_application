@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hotel_application/components/image_widget.dart';
-import 'package:hotel_application/constants/spaces.dart';
+import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/extension/screen_size.dart';
 
 class HotelCard extends StatelessWidget {
@@ -18,51 +18,67 @@ class HotelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey)),
-      child: Column(
-        children: [
-          kHSpace8,
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: ImageWidget(path: path, imgHeight:context.getHeight / 4, imgWidth:context.getWidth / 3),
-          ),
-          SizedBox(
-            width: 140,
-            child: Text(
-              title,
-              style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  overflow: TextOverflow.ellipsis),
+          child: CachedNetworkImage(
+            imageUrl: path,
+            height: context.getHeight / 4,
+            width: context.getWidth / 2.5,
+            fit: BoxFit.cover,
+            errorWidget: (context, url, error) => SizedBox(
+              height: context.getHeight / 4,
+              width: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error,
+                    color: AppColors.primary,
+                    size: 40,
+                  ),
+                  const Text(
+                    'Image not found',
+                  )
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            width: 140,
-            child: Text(
-              subtitle1,
-              style: const TextStyle(
-                  color: Colors.black54, overflow: TextOverflow.ellipsis),
-            ),
+        ),
+        SizedBox(
+          width: 140,
+          child: Text(
+            title,
+            style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                overflow: TextOverflow.ellipsis),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '$price\$',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                '/night',
-                style: TextStyle(color: Colors.black54),
-              ),
-            ],
-          )
-        ],
-      ),
+        ),
+        SizedBox(
+          width: 140,
+          child: Text(
+            subtitle1,
+            style: const TextStyle(
+                color: Colors.black54, overflow: TextOverflow.ellipsis),
+          ),
+        ),
+        Row(
+          children: [
+            Text(
+              '$price\$',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              '/night',
+              style: TextStyle(color: Colors.black54),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_application/db_services/quaries.dart';
-import 'package:hotel_application/models/hotel.dart';
-import 'package:hotel_application/screens/all_hotels_screen.dart';
+import 'package:hotel_application/app.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-HotelModel hotelObject = HotelModel(hotelName: 'no hotel found');
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,18 +13,9 @@ void main() async {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          body: FutureBuilder(
-              future: SupabaseViewServices().getHotelsInfo(),
-              builder: (context, snapshot) {
-                final list = snapshot.data;
-                return HotelsScreen(hotelList: list ?? []);
-              },
-              ),
-              ),
-    );
+    return const MaterialApp(home: App());
   }
 }
