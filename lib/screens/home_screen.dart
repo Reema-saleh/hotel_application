@@ -6,7 +6,9 @@ import 'package:hotel_application/components/hotel_card_widget.dart';
 import 'package:hotel_application/components/searchBar_widget.dart';
 import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/constants/spaces.dart';
+import 'package:hotel_application/db_services/quaries.dart';
 import 'package:hotel_application/db_services/services.dart';
+import 'package:hotel_application/screens/all_hotels_screen.dart';
 import 'package:hotel_application/utilitis/extension/nav.dart';
 import 'package:hotel_application/screens/AllCities_screen.dart';
 import 'package:hotel_application/screens/search_by_city.dart';
@@ -82,7 +84,17 @@ class Home extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                    TextButton(onPressed: () {}, child: const Text('See all')),
+                    TextButton(
+                        onPressed: () {
+                          FutureBuilder(
+                            future: SupabaseViewServices().getHotelsInfo(),
+                            builder: (context, snapshot) {
+                              final list = snapshot.data;
+                              return HotelsScreen(hotelList: list ?? []);
+                            },
+                          );
+                        },
+                        child: const Text('See all')),
                   ],
                 ),
                 SingleChildScrollView(
