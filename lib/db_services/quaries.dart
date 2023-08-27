@@ -31,8 +31,8 @@ class SupabaseViewServices {
   Future<List<Reservation>> getReservationByUserId(String userId) async {
     final rawReservation = await supabase
         .from('reservation')
-        .select('reservation_id, nights_booked, price,data')
-        .eq(userId, 'user_id');
+        .select('reservation_id, nights_booked, price, date')
+        .eq('user_id', userId);
     List<Reservation> reservation = [];
     for (var element in rawReservation) {
       reservation.add(Reservation.fromJson(element));
@@ -41,19 +41,24 @@ class SupabaseViewServices {
   }
 
   Future<List<HotelModel>> getHotelInfoforReservation(String userId) async {
+    List<HotelModel> hotels = [];
     final hotelId = await supabase
         .from('reservation')
         .select('hotel_id')
-        .eq(userId, 'user_id');
-    final rawHotels = await supabase
-        .from('hotel')
-        .select(
-            'hotel_id, hotel_name, hotel_city, room_price, num_rooms, hotel_image')
-        .eq(hotelId, 'hotel_id');
+        .eq('user_id', userId);
+    print(hotelId.runtimeType);
 
-    List<HotelModel> hotels = [];
-    for (var element in rawHotels) {
-      hotels.add(HotelModel.fromJson(element));
+    if (hotelId == null) {
+      return hotels;
+    } else {
+      final rawHotels = await supabase
+          .from('hotel')
+          .select(
+              'hotel_id, hotel_name, hotel_city, room_price, num_rooms, hotel_image')
+          .eq('hotel_id', '8c5c1bed-14b0-4704-a6d3-a876a1a48668');
+      for (var element in rawHotels) {
+        hotels.add(HotelModel.fromJson(element));
+      }
     }
 
     return hotels;
@@ -65,7 +70,7 @@ class SupabaseViewServices {
       'nights_booked': reservation.nightsBooked,
       'date': reservation.date,
       'price': reservation.price
-    }).eq(reservation.reservationId ?? '', 'reservation_id');
+    }).eq('reservation_id', reservation.reservationId ?? '');
   }
 
   Future insertReservation(Reservation reservation) async {
@@ -73,11 +78,11 @@ class SupabaseViewServices {
     await supabase.from('reservation').insert(reservation.toJson());
   }
 
-   Future deleteReservation(String reservationId) async {
+  Future deleteReservation(String reservationId) async {
     final supabase = Supabase.instance.client;
-     await supabase.from('reservation').delete().eq('reservation_id', reservationId);
+    await supabase
+        .from('reservation')
+        .delete()
+        .eq('reservation_id', reservationId);
   }
-
 }
-
-
