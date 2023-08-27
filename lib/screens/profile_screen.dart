@@ -15,53 +15,69 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              width: context.getWidth,
-              height: context.getHeight / 3.5,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [AppColors.primary, AppColors.secondry])),
-            ),
-            FutureBuilder(
-              future: SupabaseClass().getUserName(userId: currentUserId),
-              builder: (context, snapshot) {
-                return Column(
-                  children: [
-                    Text(
-                      snapshot.data?.name.toString() ?? '',
-                      style: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      currentUserEmail ?? '',
-                      style: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.secondry,
-          child: Image.asset(
-            'assets/images/sign_out.png',
-            width: 30,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                width: context.getWidth,
+                height: context.getHeight / 3.5,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [AppColors.primary, AppColors.secondry])),
+              ),
+              FutureBuilder(
+                future: SupabaseClass().getUserName(userId: currentUserId),
+                builder: (context, snapshot) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "User Name: ${snapshot.data?.name.toString() ?? ''}",
+                          style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          "User Email: ${currentUserEmail ?? ''}",
+                          style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
           ),
-          onPressed: () {
-            SupabaseClass.supabase.auth.signOut();
-          }),
-          bottomNavigationBar: BottomNavBar(index: 2),
+          Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: TextButton(
+              onPressed: () {
+                SupabaseClass.supabase.auth.signOut();
+              },
+              child: const Text(
+                'Sign out',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 16,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavBar(index: 2),
     );
   }
 }

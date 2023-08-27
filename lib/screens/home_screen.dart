@@ -78,7 +78,7 @@ class Home extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Popular cities',
+                      'Favorite place to holiday',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),

@@ -124,7 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     .from('user')
                                     .insert({
                                   "user_id": SupabaseClass
-                                      .supabase.auth.currentUser!.id,
+                                      .supabase.auth.currentSession!.user.id,
                                   "name": name,
                                   "email": email
                                 });
