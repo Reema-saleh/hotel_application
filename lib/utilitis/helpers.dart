@@ -29,19 +29,20 @@ facilitiesContainer(List<String> list) {
   }
 }
 
-gethotelInfo(String userId) async {
+Future<List<HotelModel>> gethotelInfo(String userId) async {
   final List<HotelModel> listInfo =
       await SupabaseViewServices().getHotelInfoforReservation(userId);
   return listInfo;
 }
 
-getFutureWidget() {
+getFutureWidget() async {
+  List<HotelModel> hotels = await gethotelInfo(currentUserId!);
   return FutureBuilder(
     future: SupabaseViewServices().getReservationByUserId(currentUserId!),
     builder: (context, snapshot) {
       final list = snapshot.data;
-      return MyBookingScreen(
-          reserveList: list ?? [], hotelWReserve: gethotelInfo(currentUserId!));
+
+      return MyBookingScreen(reserveList: list ?? [], hotelWReserve: hotels);
     },
   );
 }
