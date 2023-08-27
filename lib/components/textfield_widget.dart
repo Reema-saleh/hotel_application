@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/constants/spaces.dart';
 
+
 class TextfieldWidget extends StatelessWidget {
   const TextfieldWidget({
     super.key,
@@ -11,9 +12,12 @@ class TextfieldWidget extends StatelessWidget {
     this.suffiIcon,
     this.width = 300,
     this.height = 60,
-    this.controller,
+
+     this.controller, 
+    this.textFun,
     this.obscureText = false,
     this.radius,
+
   });
 
   final String label;
@@ -23,6 +27,7 @@ class TextfieldWidget extends StatelessWidget {
   final Icon? preIcon;
   final Widget? suffiIcon;
   final TextEditingController? controller;
+  final Function(String)? textFun;
   final bool obscureText;
   final double? radius;
 
@@ -41,7 +46,7 @@ class TextfieldWidget extends StatelessWidget {
         SizedBox(
           height: height,
           width: width,
-          child: TextField(
+            onChanged: textFun,
             clipBehavior: Clip.hardEdge,
             obscureText: obscureText,
             controller: controller,

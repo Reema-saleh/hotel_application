@@ -1,20 +1,23 @@
 name: hotel_application
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
   cached_network_image: ^3.2.3
   elegant_notification: ^1.11.0
   flutter:
     sdk: flutter
+  flutter_gradient_app_bar: ^0.3.1
   gradient_coloured_buttons: ^0.1.0
   icons_plus: ^4.0.0
+  scroll_date_picker: ^3.7.3
   loading_animation_widget: ^1.2.0+4
   shimmer: ^3.0.0
+
   supabase: ^1.11.1
   supabase_flutter: ^1.10.14
 
@@ -25,6 +28,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-
+  # assets:
+  #   - assets/images/
