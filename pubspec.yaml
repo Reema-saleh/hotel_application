@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   cached_network_image: ^3.2.3
-  drop_down_list: ^0.0.5
   elegant_notification: ^1.11.0
   flutter:
     sdk: flutter
@@ -16,6 +15,9 @@ dependencies:
   gradient_coloured_buttons: ^0.1.0
   icons_plus: ^4.0.0
   scroll_date_picker: ^3.7.3
+  loading_animation_widget: ^1.2.0+4
+  shimmer: ^3.0.0
+
   supabase: ^1.11.1
   supabase_flutter: ^1.10.14
 

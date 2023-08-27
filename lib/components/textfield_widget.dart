@@ -12,7 +12,12 @@ class TextfieldWidget extends StatelessWidget {
     this.suffiIcon,
     this.width = 300,
     this.height = 60,
-    this.controller, this.textFun,
+
+     this.controller, 
+    this.textFun,
+    this.obscureText = false,
+    this.radius,
+
   });
 
   final String label;
@@ -20,9 +25,11 @@ class TextfieldWidget extends StatelessWidget {
   final double height;
   final String? hintText;
   final Icon? preIcon;
-  final Icon? suffiIcon;
+  final Widget? suffiIcon;
   final TextEditingController? controller;
   final Function(String)? textFun;
+  final bool obscureText;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +46,23 @@ class TextfieldWidget extends StatelessWidget {
         SizedBox(
           height: height,
           width: width,
-          child: TextField(
             onChanged: textFun,
+            clipBehavior: Clip.hardEdge,
+            obscureText: obscureText,
             controller: controller,
+            textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 prefixIcon: preIcon,
                 suffixIcon: suffiIcon,
                 hintText: hintText,
+                hintStyle: const TextStyle(
+                  fontSize: 13,
+                ),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primary),
-                    borderRadius: BorderRadius.circular(15))),
+                    borderRadius: BorderRadius.circular(radius ?? 15))),
           ),
         ),
       ],
