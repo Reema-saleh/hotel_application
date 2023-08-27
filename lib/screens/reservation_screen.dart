@@ -129,7 +129,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                               nights: int.tryParse(nightsController.text)),
                         );
                         SupabaseViewServices().insertReservation(object);
-                        Navigator.pop(context);
+                        getFutureWidget().push;
                       } else {
                         ElegantNotification.info(
                                 title: const Text("Info"),

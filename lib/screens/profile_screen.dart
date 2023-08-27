@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_application/components/bottom_nav.dart';
 import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/db_services/services.dart';
 import 'package:hotel_application/utilitis/extension/screen_size.dart';
@@ -60,6 +61,7 @@ class Profile extends StatelessWidget {
           onPressed: () {
             SupabaseClass.supabase.auth.signOut();
           }),
+          bottomNavigationBar: BottomNavBar(index: 2),
     );
   }
 }

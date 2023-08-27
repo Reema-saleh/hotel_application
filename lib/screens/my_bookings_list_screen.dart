@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/components/appbar_widget.dart';
+import 'package:hotel_application/components/bottom_nav.dart';
 import 'package:hotel_application/components/hotel_card_widget.dart';
 import 'package:hotel_application/models/hotel.dart';
 import 'package:hotel_application/models/reservation.dart';
@@ -40,6 +41,7 @@ class MyBookingScreen extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: BottomNavBar(index: 1),
     );
   }
 }

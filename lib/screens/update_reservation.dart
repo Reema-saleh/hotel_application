@@ -118,7 +118,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                         );
                         SupabaseViewServices()
                             .updateReservation(widget.reserveObject);
-                        Navigator.pop(context);
+                        getFutureWidget();
                       }
                     }),
                 kHSpace16,
@@ -127,6 +127,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     onPressed: () {
                       SupabaseViewServices().deleteReservation(
                           widget.reserveObject.reservationId!);
+                      getFutureWidget();
                     })
               ],
             ),

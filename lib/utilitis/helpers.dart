@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_application/db_services/quaries.dart';
+import 'package:hotel_application/main.dart';
+import 'package:hotel_application/models/hotel.dart';
+import 'package:hotel_application/screens/my_bookings_list_screen.dart';
 
 double getTotalPrice({required double price, required nights, String? coupon}) {
   // ignore: unused_local_variable
@@ -23,4 +27,21 @@ facilitiesContainer(List<String> list) {
       )),
     );
   }
+}
+
+gethotelInfo(String userId) async {
+  final List<HotelModel> listInfo =
+      await SupabaseViewServices().getHotelInfoforReservation(userId);
+  return listInfo;
+}
+
+getFutureWidget() {
+  return FutureBuilder(
+    future: SupabaseViewServices().getReservationByUserId(currentUserId!),
+    builder: (context, snapshot) {
+      final list = snapshot.data;
+      return MyBookingScreen(
+          reserveList: list ?? [], hotelWReserve: gethotelInfo(currentUserId!));
+    },
+  );
 }

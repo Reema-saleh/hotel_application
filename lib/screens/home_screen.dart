@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:hotel_application/components/bottom_nav.dart';
 import 'package:hotel_application/components/city_card_widget.dart';
 import 'package:hotel_application/components/gradient_button_widget.dart';
 import 'package:hotel_application/components/hotel_card_widget.dart';
@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
                   showModalBottomSheet(
                       isScrollControlled: true,
                       context: context,
-                      builder: (context) => SearchByCity());
+                      builder: (context) => const SearchByCity());
                 },
                 width: 150,
               ),
@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          AllCities().push(context);
+                          const AllCities().push(context);
                         },
                         child: const Text('See all')),
                   ],
@@ -133,6 +133,7 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(index: 0),
     );
   }
 }
