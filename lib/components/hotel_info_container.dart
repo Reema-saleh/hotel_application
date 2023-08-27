@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hotel_application/components/bold_text.dart';
 import 'package:hotel_application/components/review_wiget.dart';
 import 'package:hotel_application/db_services/quaries.dart';
-import 'package:hotel_application/extension/screen_size.dart';
-import 'package:hotel_application/helpers.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/helpers.dart';
 import 'package:hotel_application/models/hotel.dart';
 
 class InfoContainer extends StatelessWidget {

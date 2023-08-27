@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel_application/components/fixed_button_widget.dart';
 import 'package:hotel_application/components/hotel_info_container.dart';
 import 'package:hotel_application/components/image_widget.dart';
-import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
 import 'package:hotel_application/models/hotel.dart';
 
 class AllHotels extends StatelessWidget {

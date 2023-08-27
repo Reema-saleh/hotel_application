@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_coloured_buttons/gradient_coloured_buttons.dart';
 import 'package:hotel_application/constants/colors.dart';
-import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
 
 class GradientButtonWidget extends StatelessWidget {
   const GradientButtonWidget(

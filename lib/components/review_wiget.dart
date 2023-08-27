@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/constants/spaces.dart';
-import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
 import 'package:hotel_application/models/review.dart';
 
 class Reviews extends StatelessWidget {

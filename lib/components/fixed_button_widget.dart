@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/components/gradient_button_widget.dart';
-import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
 import 'package:hotel_application/models/hotel.dart';
 
 class FixedButton extends StatelessWidget {

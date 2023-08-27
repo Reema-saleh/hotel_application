@@ -7,7 +7,7 @@ import 'package:hotel_application/components/searchBar_widget.dart';
 import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/constants/spaces.dart';
 import 'package:hotel_application/db_services/services.dart';
-import 'package:hotel_application/extension/nav.dart';
+import 'package:hotel_application/utilitis/extension/nav.dart';
 import 'package:hotel_application/screens/AllCities_screen.dart';
 import 'package:hotel_application/screens/search_by_city.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

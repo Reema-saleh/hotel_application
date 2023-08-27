@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/constants/colors.dart';
-import 'package:hotel_application/extension/screen_size.dart';
+import 'package:hotel_application/utilitis/extension/screen_size.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 

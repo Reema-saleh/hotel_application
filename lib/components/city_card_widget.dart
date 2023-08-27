@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_application/constants/colors.dart';
 import 'package:hotel_application/constants/spaces.dart';
-import 'package:hotel_application/extension/nav.dart';
+import 'package:hotel_application/utilitis/extension/nav.dart';
 import 'package:hotel_application/screens/hotels_based_on_search_screen.dart';
 
 class CityCard extends StatelessWidget {
